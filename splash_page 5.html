@@ -163,69 +163,62 @@ footer {
 <!-- check for valid email entry -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-* {
-    box-sizing: border-box;
-}
+
   const emailInput = document.getElementById("email");
   const downloadBtn = document.getElementById("downloadBtn");
   const errorText = document.getElementById("email-error");
   const requiredStar = document.getElementById("email-required");
+  const form = document.getElementById("emailForm");
+  const successIcon = document.getElementById("form-success");
 
   function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
+  // Email validation
   emailInput.addEventListener("input", () => {
     if (isValidEmail(emailInput.value)) {
       errorText.style.display = "none";
       requiredStar.style.display = "none";
-      downloadBtn.disabled = false;
-      downloadBtn.style.opacity = "1";
-      downloadBtn.style.cursor = "pointer";
-    } else {
-      downloadBtn.disabled = true;
-      downloadBtn.style.opacity = "0.5";
-      downloadBtn.style.cursor = "not-allowed";
+      emailInput.style.border = "";
     }
   });
 
-  downloadBtn.addEventListener("click", (e) => {
+  // Formspree submit (no redirect)
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
     if (!isValidEmail(emailInput.value)) {
-      e.preventDefault();
       errorText.style.display = "block";
       requiredStar.style.display = "inline";
       emailInput.style.border = "2px solid red";
-    } else {
-      // replace with your real download link
-      window.location.href = "CellVision_v2.3.zip";
+      return;
     }
-  });
-</script>
-
-<!-- Prevent formspree email submission redirect -->
-<script>
-  const form = document.getElementById("emailForm");
-  const successIcon = document.getElementById("form-success");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
 
     const formData = new FormData(form);
 
     const response = await fetch(form.action, {
-      method: form.method,
+      method: "POST",
       body: formData,
-      headers: {
-        "Accept": "application/json"
-      }
+      headers: { "Accept": "application/json" }
     });
 
     if (response.ok) {
       successIcon.style.display = "inline";
+      downloadBtn.disabled = false;
+      downloadBtn.style.opacity = "1";
+      downloadBtn.style.cursor = "pointer";
     } else {
       alert("There was an error submitting the form. Please try again.");
     }
   });
+
+  // Download button
+  downloadBtn.addEventListener("click", () => {
+    window.location.href = "cellvision-open.zip";
+  });
+
+});
 </script>
     
 <body>
