@@ -23,7 +23,42 @@
 * {
     box-sizing: border-box;
 }
+  const emailInput = document.getElementById("email");
+  const downloadBtn = document.getElementById("downloadBtn");
+  const errorText = document.getElementById("email-error");
+  const requiredStar = document.getElementById("email-required");
 
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  emailInput.addEventListener("input", () => {
+    if (isValidEmail(emailInput.value)) {
+      errorText.style.display = "none";
+      requiredStar.style.display = "none";
+      downloadBtn.disabled = false;
+      downloadBtn.style.opacity = "1";
+      downloadBtn.style.cursor = "pointer";
+    } else {
+      downloadBtn.disabled = true;
+      downloadBtn.style.opacity = "0.5";
+      downloadBtn.style.cursor = "not-allowed";
+    }
+  });
+
+  downloadBtn.addEventListener("click", (e) => {
+    if (!isValidEmail(emailInput.value)) {
+      e.preventDefault();
+      errorText.style.display = "block";
+      requiredStar.style.display = "inline";
+      emailInput.style.border = "2px solid red";
+    } else {
+      // replace with your real download link
+      window.location.href = "CellVision_v2.3.zip";
+    }
+  });
+</script>
+    
 body {
     margin: 0;
     font-family: Inter, Helvetica, Arial, sans-serif;
@@ -208,23 +243,76 @@ footer {
 </section>
 
 <section id="open" class="section">
-    <h2>CellVision Open</h2>
-    <div class="card">
-        <span class="badge">Open Source</span>
-        <p>
-            The original CellVision, developed by Bedrock Materials and
-            released to the public domain. 
-        </p>
-        <p>  
-            CellVision Desktop <br>
-            Version: 2.3 <br>
-            Version Release Date: October 2025 <br>
-            License: Open Source  
-        </p>
-        <div class="cta-row">
-            <a class="button primary" href="cellvision-open.zip">Download</a>
-        </div>
+  <h2>CellVision Open</h2>
+
+  <div class="card">
+    <span class="badge">Open Source</span>
+
+    <p>
+      The original CellVision, developed by Bedrock Materials and
+      released to the public domain.
+    </p>
+
+    <p>
+      CellVision Desktop <br>
+      Version: 2.3 <br>
+      Version Release Date: October 2025 <br>
+      License: Open Source
+    </p>
+
+    <!-- EMAIL GATE START -->
+    <p style="margin-top:16px;">
+      <strong>
+        To download CellVision V2.3, please enter your email.
+      </strong><br>
+        By downloading CellVision, you agree to receive emails related to CellVision, including product updates, feature announcements, and occasional requests for feedback or surveys. You may unsubscribe at any time.
+    </p>
+
+    <form
+      action="https://formspree.io/f/mlgronpn"
+      method="POST"
+      id="emailForm"
+      style="margin-top:8px;"
+    >
+      <label for="email">
+        Your email
+        <span id="email-required" style="color:red; display:none;">*</span>
+      </label><br>
+
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        style="padding:8px; width:100%; max-width:280px;"
+      >
+
+      <button type="submit" class="button secondary" style="margin-top:8px;">
+        Submit
+      </button>
+    </form>
+
+    <p
+      id="email-error"
+      style="color:red; display:none; margin-top:6px;"
+    >
+      Please enter a valid email address to enable the download.
+    </p>
+    <!-- EMAIL GATE END -->
+
+    <!-- DOWNLOAD CTA (GATED) -->
+    <div class="cta-row">
+      <button
+        id="downloadBtn"
+        class="button primary"
+        disabled
+        style="opacity:0.5; cursor:not-allowed;"
+      >
+        Download
+      </button>
     </div>
+
+  </div>
 </section>
 
 <section id="pro" class="section">
