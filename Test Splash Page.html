@@ -225,17 +225,26 @@ footer {
       <strong>
         To download CellVision V2.3, please enter your email.
       </strong><br>
-    <label style="display:block; margin-top:12px; font-size:14px;">
+     <div class="fs-checkbox-field">
+    <div class="fs-checkbox-wrapper">
       <input
+        aria-describedby="newsletter-consent-description"
+        class="fs-checkbox"
+        id="newsletter-consent"
+        name="newsletter-consent"
+        required
         type="checkbox"
-        name="newsletter_opt_in"
         value="yes"
-        style="margin-right:6px;"
-          >
-          Check here to receive our newsletter, including product updates, feature
-      announcements, and occasional requests for feedback or surveys. You may
-      unsubscribe at any time.
-       </label>
+      />
+    </div>
+          <div>
+      <label class="fs-label" for="newsletter-consent">
+        Consent to Receive Newsletters
+      </label>
+      <p class="fs-description" id="newsletter-consent-description">
+        I agree to receive newsletters from CellVision LLC which include product updates, feature announcements, and requests for feedback or surveys. Unsubscribe at any time.
+      </p>
+    </div>
      </p>
     <form
       action="https://formspree.io/f/mlgronpn"
