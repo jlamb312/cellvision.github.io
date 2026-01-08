@@ -221,10 +221,16 @@ footer {
     </p>
 
     <!-- EMAIL GATE START -->
-    <form
+    <p style="margin-top:16px;">
+      <strong>
+        To download CellVision V2.3, please enter your email.
+      </strong><br>
+    </p>
+        
+      <form
       action="https://formspree.io/f/mlgronpn"
-      class="fs-form"
-      target="_top"
+        id="fs-form"
+        class="fs-form"
       method="POST"
       style="margin-top:8px;"
     >
@@ -250,10 +256,6 @@ footer {
       >
         ✓
       </span>
-            <p style="margin-top:16px;">
-      <strong>
-        To download CellVision V2.3, please enter your email.
-      </strong><br>
      
     <div class="fs-checkbox-field">
     <div class="fs-checkbox-wrapper">
@@ -262,7 +264,6 @@ footer {
         class="fs-checkbox"
         id="newsletter-consent"
         name="newsletter-consent"
-        required
         type="checkbox"
         value="yes"
       />
@@ -273,7 +274,6 @@ footer {
         By checking the box above, you agree to receive news from CellVision LLC which includes product updates, feature announcements, and requests for feedback or surveys. You may Unsubscribe at any time.
       </p>
     </div>
-     </p>
     </form>
 
     <p
@@ -353,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const downloadBtn = document.getElementById("downloadBtn");
   const errorText = document.getElementById("email-error");
   const requiredStar = document.getElementById("email-required");
-  const form = document.getElementById("emailForm");
+  const form = document.getElementById("fs-form");
   const successIcon = document.getElementById("form-success");
 
   function isValidEmail(email) {
