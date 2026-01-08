@@ -82,6 +82,11 @@ h1 {
     font-size: 14px;
 }
 
+    .newsletter-error label,
+    .newsletter-error p {
+      color: red;
+}
+    
 .primary {
     background: var(--accent);
     color: white;
@@ -243,7 +248,6 @@ footer {
         type="email"
         name="email"
         id="email"
-        required
         style="padding:8px; width:100%; max-width:280px;"
       >
 
@@ -258,7 +262,8 @@ footer {
       </span>
      
     <div class="fs-checkbox-field">
-    <div class="fs-checkbox-wrapper">
+    <div class="fs-checkbox-wrapper" 
+        id="newsletter-wrapper">
       <input
         aria-describedby="newsletter-consent-description"
         class="fs-checkbox"
@@ -268,7 +273,7 @@ footer {
         type="checkbox"
         value="yes"
       />
-      <label class="fs-label" for="newsletter-consent">
+      <label class="fs-label" for="newsletter-consent" id="newsletter-label">
         Consent to Receive Newsletters
       </label>
       <p class="fs-description" id="newsletter-consent-description">
@@ -369,35 +374,59 @@ document.addEventListener("DOMContentLoaded", () => {
       emailInput.style.border = "";
     }
   });
+    
+  // Clear red warning if consent box is checked
+    const consentCheckbox = document.getElementById("newsletter-consent");
+    const consentWrapper = document.getElementById("newsletter-wrapper");
 
+    consentCheckbox.addEventListener("change", () => {
+      if (consentCheckbox.checked) {
+    consentWrapper.classList.remove("newsletter-error");
+  }
+});
+    
   // Formspree submit (no redirect)
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    if (!isValidEmail(emailInput.value)) {
-      errorText.style.display = "block";
-      requiredStar.style.display = "inline";
-      emailInput.style.border = "2px solid red";
-      return;
-    }
+  const consentCheckbox = document.getElementById("newsletter-consent");
+  const consentWrapper = document.getElementById("newsletter-wrapper");
 
-    const formData = new FormData(form);
+  let hasError = false;
 
-    const response = await fetch(form.action, {
-      method: "POST",
-      body: formData,
-      headers: { "Accept": "application/json" }
-    });
+  // Email validation
+  if (!isValidEmail(emailInput.value)) {
+    errorText.style.display = "block";
+    requiredStar.style.display = "inline";
+    emailInput.style.border = "2px solid red";
+    hasError = true;
+  }
 
-    if (response.ok) {
-      successIcon.style.display = "inline";
-      downloadBtn.disabled = false;
-      downloadBtn.style.opacity = "1";
-      downloadBtn.style.cursor = "pointer";
-    } else {
-      alert("There was an error submitting the form. Please try again.");
-    }
+  // Newsletter consent validation
+  if (!consentCheckbox.checked) {
+    consentWrapper.classList.add("newsletter-error");
+    hasError = true;
+  }
+
+  if (hasError) return;
+
+  const formData = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: "POST",
+    body: formData,
+    headers: { "Accept": "application/json" }
   });
+
+  if (response.ok) {
+    successIcon.style.display = "inline";
+    downloadBtn.disabled = false;
+    downloadBtn.style.opacity = "1";
+    downloadBtn.style.cursor = "pointer";
+  } else {
+    alert("There was an error submitting the form. Please try again.");
+  }
+});
 
   // Download button
   downloadBtn.addEventListener("click", () => {
