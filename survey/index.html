@@ -78,6 +78,23 @@ p.lead {
   color: var(--muted);
 }
 
+  .home-link {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.home-link a {
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.home-link a:hover {
+  color: var(--text);
+}
+
 input[type="email"],
 input[type="text"] {
   width: 100%;
@@ -129,7 +146,10 @@ footer {
 <body>
 
 <div class="container">
-
+<div class="home-link">
+  <a href="https://cellvision.org">Home</a>
+</div>
+  
 <header>
   <a href="/">
     <img src="/cv-logo.png" alt="CellVision logo">
