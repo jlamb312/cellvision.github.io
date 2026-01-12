@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CellVision User Survey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Favicons (reuse your existing ones) -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+<style>
+:root {
+  --bg: #f7f7f7;
+  --card: #ffffff;
+  --text: #222;
+  --muted: #666;
+  --accent: #7fae8f;
+  --accent-dark: #5f8f72;
+  --border: #ddd;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+header img {
+  height: 36px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+p.lead {
+  color: var(--muted);
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.field {
+  margin-bottom: 28px;
+}
+
+.field label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.field small {
+  color: var(--muted);
+}
+
+input[type="email"],
+input[type="text"] {
+  width: 100%;
+  max-width: 360px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.checkbox-group,
+.radio-group {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.checkbox-group label,
+.radio-group label {
+  font-weight: normal;
+  cursor: pointer;
+}
+
+button {
+  margin-top: 10px;
+  padding: 14px 24px;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+footer {
+  margin-top: 50px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+  <a href="/">
+    <img src="/cv-logo.png" alt="CellVision logo">
+  </a>
+</header>
+
+<h1>CellVision User Survey</h1>
+<p class="lead">
+  Help guide the future of CellVision. This short survey takes ~2 minutes.
+</p>
+
+<div class="card">
+
+<form action="https://formspree.io/f/XXXXXXXX" method="POST">
+
+  <!-- 1) Email -->
+  <div class="field">
+    <label for="email">Your email address</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+    >
+    <small>We’ll only use this for CellVision-related updates.</small>
+  </div>
+
+  <!-- 2) Usage -->
+  <div class="field">
+    <label>What have you used CellVision for?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="usage" value="Simple curiosity" required> Simple curiosity</label>
+      <label><input type="radio" name="usage" value="Academic or R&D decisions"> Academic or R&D decisions</label>
+      <label><input type="radio" name="usage" value="Investment or business decisions"> Investment or business decisions</label>
+      <label>
+        <input type="radio" name="usage" value="Other">
+        Other:
+        <input type="text" name="usage_other" placeholder="Please specify">
+      </label>
+    </div>
+  </div>
+
+  <!-- 3) SaaS value -->
+  <div class="field">
+    <label>Would a browser-based version of CellVision add value to your work?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="saas_value" value="Yes" required> Yes</label>
+      <label><input type="radio" name="saas_value" value="Maybe"> Maybe</label>
+      <label><input type="radio" name="saas_value" value="No"> No</label>
+    </div>
+  </div>
+
+  <!-- 4) Feature priorities -->
+  <div class="field">
+    <label>Which new features would you most want to see added?</label>
+    <small>Select up to 5</small>
+
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="features[]" value="Comparison tools"> Comparison tools</label>
+      <label><input type="checkbox" name="features[]" value="Report tools"> Report tools</label>
+      <label><input type="checkbox" name="features[]" value="Save custom cell designs"> Ability to save custom cell designs</label>
+      <label><input type="checkbox" name="features[]" value="Upload charge/discharge curves"> Ability to upload charge/discharge curves</label>
+      <label><input type="checkbox" name="features[]" value="Higher discharge resolution"> Higher discharge curve resolution</label>
+      <label><input type="checkbox" name="features[]" value="Charge curve simulation"> Charge curve simulation</label>
+      <label><input type="checkbox" name="features[]" value="New cell architectures"> New cell architecture options</label>
+      <label><input type="checkbox" name="features[]" value="Version control"> Better version control</label>
+      <label><input type="checkbox" name="features[]" value="Live cost updates"> Live cost updates</label>
+      <label><input type="checkbox" name="features[]" value="Parameter explanations"> Explanations of variables and parameters</label>
+      <label><input type="checkbox" name="features[]" value="Tariff costs"> Option to set tariff costs</label>
+      <label><input type="checkbox" name="features[]" value="Manufacturing costs"> Option to set cell manufacturing costs</label>
+      <label><input type="checkbox" name="features[]" value="Non-FEC modeling"> Non-FEC cost modeling</label>
+      <label><input type="checkbox" name="features[]" value="Degradation prediction"> Charge/discharge curve degradation prediction</label>
+
+      <label>
+        <input type="checkbox" name="features[]" value="Additional materials">
+        Additional material types:
+        <input type="text" name="materials_other" placeholder="Please specify">
+      </label>
+
+      <label>
+        <input type="checkbox" name="features[]" value="Other visualizations">
+        Other visualizations:
+        <input type="text" name="visualizations_other" placeholder="Please specify">
+      </label>
+    </div>
+  </div>
+
+  <button type="submit">Submit survey</button>
+
+</form>
+
+</div>
+
+<footer>
+  © CellVision LLC
+</footer>
+
+</div>
+
+</body>
+</html>
