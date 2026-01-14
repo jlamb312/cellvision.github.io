@@ -275,6 +275,20 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.ok) throw new Error();
 
       successIcon.style.display = "inline";
+      form.style.display = "none";
+
+      successMessage.style.display = "block";
+      successMessage.innerHTML = `
+        <h3>Check your email 📬</h3>
+        <p>
+          We've sent you a download link.
+          If you don’t see it within a few minutes, please check your spam folder.
+        </p>
+        <p>
+          <strong>Note:</strong> Your browser may warn that the download is unsafe.
+          This is common for new software distributions — the file is safe.
+        </p>
+      `;
     } catch {
       alert("Signup failed. Please try again.");
     }
