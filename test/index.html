@@ -122,8 +122,7 @@
       margin-bottom: 10px;
     }
 
-    .newsletter-error label,
-    .newsletter-error p {
+    .newsletter-error label {
       color: red;
     }
 
@@ -176,7 +175,7 @@
       To download CellVision V2.3, please enter your email.
     </p>
 
-    <!-- ✅ VALID, SELF-CONTAINED FORM -->
+    <!-- FORM -->
     <form id="signup-form" style="margin-top:12px;">
       <label for="email">
         Your email
@@ -190,16 +189,11 @@
       >
 
       <div id="newsletter-wrapper" style="margin-top:10px;">
-        <input
-          type="checkbox"
-          id="newsletter-consent"
-          required
-        />
+        <input type="checkbox" id="newsletter-consent" required />
         <label for="newsletter-consent">
           Consent to Receive Newsletters
         </label>
       </div>
-      <div id="signup-success-message" style="display:none;"></div>
 
       <button type="submit" class="button secondary" style="margin-top:12px;">
         Submit
@@ -212,6 +206,12 @@
         ✓
       </span>
     </form>
+
+    <!-- SUCCESS MESSAGE (NOW OUTSIDE THE FORM) -->
+    <div
+      id="signup-success-message"
+      style="display:none; margin-top:20px;"
+    ></div>
 
     <p
       id="email-error"
@@ -251,7 +251,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let hasError = false;
 
-    // Reset UI state
     errorText.style.display = "none";
     requiredStar.style.display = "none";
     consentWrapper.classList.remove("newsletter-error");
@@ -281,9 +280,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!res.ok) throw new Error();
 
-      // Success UI
-      successIcon.style.display = "inline";
       form.style.display = "none";
+      successIcon.style.display = "inline";
 
       successMessage.style.display = "block";
       successMessage.innerHTML = `
@@ -303,7 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-
 
 </body>
 </html>
