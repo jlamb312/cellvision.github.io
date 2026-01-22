@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CellVision – Battery Cost & Performance Modeling</title>
+
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --text: #222;
+      --muted: #666;
+      --accent: #7fae8f;
+      --accent-dark: #5f8f72;
+      --border: #ddd;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 60px;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    h1 {
+      font-size: 36px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .cta-row {
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 14px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: white;
+    }
+
+    .secondary:hover {
+      background: #f0f0f0;
+    }
+
+    .section {
+      margin-bottom: 80px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 30px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      background: #eee;
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .newsletter-error label {
+      color: red;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <img src="cv-logo.png" alt="CellVision logo" />
+  <nav>
+    <a href="#open">Open</a>
+    <a href="#pro">Pro</a>
+    <a href="#license">License</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Battery cost and performance modeling — before you build cells</h1>
+  <p>
+    CellVision is an industry-built battery modeling tool to compare battery
+    chemistries, cell designs, and manufacturing costs. Now evolving into a
+    full SaaS platform.
+  </p>
+
+  <div class="cta-row">
+    <a class="button primary" href="#open">Download CellVision Open</a>
+    <a class="button secondary" href="#pro">CellVision Pro — Coming Soon</a>
+  </div>
+</section>
+
+<section id="open" class="section">
+  <h2>CellVision Open</h2>
+
+  <div class="card">
+    <span class="badge">Open Source</span>
+
+    <p>
+      To download CellVision V2.3, please enter your email.
+    </p>
+
+    <!-- FORM -->
+    <form id="signup-form" style="margin-top:12px;">
+      <label for="email">
+        Your email
+        <span id="email-required" style="color:red; display:none;">*</span>
+      </label><br>
+
+      <input
+        type="email"
+        id="email"
+        style="padding:8px; width:100%; max-width:280px;"
+      >
+
+      <div id="newsletter-wrapper" style="margin-top:10px;">
+        <input type="checkbox" id="newsletter-consent" required />
+        <label for="newsletter-consent">
+          Consent to Receive Newsletters
+        </label>
+      </div>
+
+      <button type="submit" class="button secondary" style="margin-top:12px;">
+        Submit
+      </button>
+
+      <span
+        id="form-success"
+        style="display:none; color:green; margin-left:8px; font-weight:bold;"
+      >
+        ✓
+      </span>
+    </form>
+
+    <!-- SUCCESS MESSAGE (NOW OUTSIDE THE FORM) -->
+    <div
+      id="signup-success-message"
+      style="display:none; margin-top:20px;"
+    ></div>
+
+    <p
+      id="email-error"
+      style="color:red; display:none; margin-top:6px;"
+    >
+      Please enter a valid email address.
+    </p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <img src="cv-logo.png" alt="CellVision logo" height="24">
+  <span>© CellVision LLC</span>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Signup JS loaded");
+
+  const form = document.getElementById("signup-form");
+  const emailInput = document.getElementById("email");
+  const errorText = document.getElementById("email-error");
+  const requiredStar = document.getElementById("email-required");
+  const successIcon = document.getElementById("form-success");
+  const consentCheckbox = document.getElementById("newsletter-consent");
+  const consentWrapper = document.getElementById("newsletter-wrapper");
+  const successMessage = document.getElementById("signup-success-message");
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    let hasError = false;
+
+    errorText.style.display = "none";
+    requiredStar.style.display = "none";
+    consentWrapper.classList.remove("newsletter-error");
+
+    if (!isValidEmail(emailInput.value)) {
+      errorText.style.display = "block";
+      requiredStar.style.display = "inline";
+      hasError = true;
+    }
+
+    if (!consentCheckbox.checked) {
+      consentWrapper.classList.add("newsletter-error");
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    try {
+      const res = await fetch(
+        "https://cv-user-backend-production-c751.up.railway.app/signup",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: emailInput.value })
+        }
+      );
+
+      if (!res.ok) throw new Error();
+
+      form.style.display = "none";
+      successIcon.style.display = "inline";
+
+      successMessage.style.display = "block";
+      successMessage.innerHTML = `
+        <h3>Check your email 📬</h3>
+        <p>
+          We've sent you a download link.
+          If you don’t see it within a few minutes, please check your spam folder.
+        </p>
+        <p>
+          <strong>Note:</strong> Your browser may warn that the download is unsafe.
+          This is common for new software distributions — the file is safe.
+        </p>
+      `;
+    } catch {
+      alert("Signup failed. Please try again.");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
