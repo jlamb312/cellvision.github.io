@@ -293,13 +293,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cb.addEventListener("change", updateFeatureCheckboxState);
   });
 
-      if (featureCheckboxes.length > 5) {
-      alert("Please select no more than 5 features.");
-      return;
-    }
-
-      const features = Array.from(featureCheckboxes).map(cb => cb.value);
-
     function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
@@ -336,6 +329,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const featuresOther =
       document.querySelector('input[name="features_other"]')?.value || null;
 
+    // --- checkbox alert ---
+          if (featureCheckboxes.length > 5) {
+      alert("Please select no more than 5 features.");
+      return;
+    }
+
+      const features = Array.from(featureCheckboxes).map(cb => cb.value);
+    
     // --- Send to backend ---
     try {
       const res = await fetch(
