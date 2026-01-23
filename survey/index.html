@@ -330,12 +330,15 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector('input[name="features_other"]')?.value || null;
 
     // --- checkbox alert ---
-          if (featureCheckboxes.length > 5) {
+    const featureCheckboxes =
+      document.querySelectorAll('input[name="features[]"]:checked');
+
+    if (featureCheckboxes.length > 5) {
       alert("Please select no more than 5 features.");
       return;
     }
 
-      const features = Array.from(featureCheckboxes).map(cb => cb.value);
+    const features = Array.from(featureCheckboxes).map(cb => cb.value);
     
     // --- Send to backend ---
     try {
