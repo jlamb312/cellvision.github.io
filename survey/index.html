@@ -134,7 +134,8 @@ button:hover {
   background: var(--accent-dark);
 }
   
-.checkbox-group input[type="checkbox"]:disabled {
+.checkbox-group input[type="checkbox"]:disabled + span,
+  .checkbox-group input[type="checkbox"]:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -234,7 +235,7 @@ footer {
       <label>
         <input type="checkbox" name="features[]" value="Additional Diagrams">
         Additional diagrams or visualizations:
-        <input type="text" name="diagram_other" placeholder="Please specify">
+        <input type="text" name="diagrams_other" placeholder="Please specify">
       </label>  
       
       <label>
@@ -282,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateFeatureCheckboxState() {
     const checkedCount = document.querySelectorAll('input[name="features[]"]:checked').length;
 
-  featureCheckedboxes.forEach(cb => {
+  featureCheckboxes.forEach(cb => {
     if (!cb.checked) {
       cb.disabled = checkedCount >=MAX_FEATURES;}
     });
@@ -291,6 +292,13 @@ document.addEventListener("DOMContentLoaded", () => {
   featureCheckboxes.forEach(cb => {
     cb.addEventListener("change", updateFeatureCheckboxState);
   });
+
+      if (featureCheckboxes.length > 5) {
+      alert("Please select no more than 5 features.");
+      return;
+    }
+
+      const features = Array.from(featureCheckboxes).map(cb => cb.value);
 
     function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -317,17 +325,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- SaaS value ---
     const saasValue =
       document.querySelector('input[name="saas_value"]:checked')?.value || null;
-
-    // --- Features (max 5) ---
-    const featureCheckboxes =
-      document.querySelectorAll('input[name="features[]"]:checked');
-
-    if (featureCheckboxes.length > 5) {
-      alert("Please select no more than 5 features.");
-      return;
-    }
-
-    const features = Array.from(featureCheckboxes).map(cb => cb.value);
 
     // --- Other feature text fields ---
     const diagramsOther =
