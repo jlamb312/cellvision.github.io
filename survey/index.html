@@ -348,7 +348,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://formspree.io/f/mdazpwzp",
         {
            method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+            },
           body: JSON.stringify({
             email: emailInput.value,
             usage,
@@ -362,20 +365,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       );
 
-      if (!res.ok) throw new Error("submission failed");
+  const data = await res.json();
 
-      form.style.display = "none";
-      successMessage.style.display = "block";
-      successMessage.innerHTML = `
-        <h3>Thank you for participating in our survey!</h3>
-        <p>
-          Your feedback is valuable and we will use this information to direct the development of CellVision.
-        </p>
-      `;
-    } catch (err) {
-      alert("There was an error submitting the survey. Please try again.");
-      console.error(err);
-    }
+  if (!res.ok) {
+    throw new Error(data.error || "Submission failed");
+  }
+
+  form.style.display = "none";
+  successMessage.style.display = "block";
+  successMessage.innerHTML = `
+    <h3>Thank you for participating in our survey!</h3>
+    <p>
+      Your feedback is valuable and we will use this information to direct the development of CellVision.
+    </p>
+  `;
+} catch (err) {
+  alert("There was an error submitting the survey. Please try again.");
+  console.error(err);
+}
   });
 
 });
