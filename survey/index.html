@@ -362,7 +362,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       );
 
-    if (response.ok) {
       form.style.display = "none";
       successMessage.style.display = "block";
       successMessage.innerHTML = `
@@ -371,10 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
           Your feedback is valuable and we will use this information to direct the development of CellVision.
         </p>
       `;
-    } else {
-      alert("There was an error submitting the survey. Please try again.");
-      console.error(err);
-    }
+    } 
   });
 
 });
