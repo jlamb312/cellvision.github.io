@@ -277,15 +277,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("survey");
   const emailInput = document.getElementById("email");
   const successMessage = document.getElementById("survey-success-message");
-  const selectedFeatures =
-  document.querySelectorAll('input[name="features[]"]:checked');
-
-if (selectedFeatures.length > 5) {
-  alert("Please select no more than 5 features.");
-  return;
-}
-
-const features = Array.from(selectedFeatures).map(cb => cb.value);
+  const featureCheckboxes = document.querySelectorAll('input[name="features[]"]'); 
+  const MAX_FEATURES = 5;
 
   function updateFeatureCheckboxState() {
     const checkedCount = document.querySelectorAll('input[name="features[]"]:checked').length;
