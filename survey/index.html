@@ -346,8 +346,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch(
         "https://formspree.io/f/mdazpwzp",
         {
-           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          method: "POST",
+          headers: { "Accept": "application/json" },
           body: JSON.stringify({
             email: emailInput.value,
             usage,
@@ -360,9 +360,8 @@ document.addEventListener("DOMContentLoaded", () => {
           })
         }
       );
-
-      if (!res.ok) throw new Error("submission failed");
-
+;
+ if (response.ok) {
       form.style.display = "none";
       successMessage.style.display = "block";
       successMessage.innerHTML = `
@@ -371,10 +370,9 @@ document.addEventListener("DOMContentLoaded", () => {
           Your feedback is valuable and we will use this information to direct the development of CellVision.
         </p>
       `;
-    } catch (err) {
-      alert("There was an error submitting the survey. Please try again.");
-      console.error(err);
-    }
+    } else {
+       alert("There was an error submitting the form. Please try again.");
+      }
   });
 
 });
