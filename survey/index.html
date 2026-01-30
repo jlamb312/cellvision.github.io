@@ -277,8 +277,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("survey");
   const emailInput = document.getElementById("email");
   const successMessage = document.getElementById("survey-success-message");
-  const featureCheckboxes = document.querySelectorAll('input[name="features[]"]');
-  const MAX_FEATURES = 5;
+  const selectedFeatures =
+  document.querySelectorAll('input[name="features[]"]:checked');
+
+if (selectedFeatures.length > 5) {
+  alert("Please select no more than 5 features.");
+  return;
+}
+
+const features = Array.from(selectedFeatures).map(cb => cb.value);
 
   function updateFeatureCheckboxState() {
     const checkedCount = document.querySelectorAll('input[name="features[]"]:checked').length;
@@ -341,24 +348,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const features = Array.from(featureCheckboxes).map(cb => cb.value);
 
  // --- Send to backend ---
-    try {
-      const res = await fetch(
-        "https://formspree.io/f/xpqrolzv",
-        {
-           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: emailInput.value,
-            usage,
-            usageOther,
-            saasValue,
-            features,
-            diagramsOther,
-            materialsOther,
-            featuresOther
-          })
-        }
-      );
+   const res = await fetch(
+  "https://formspree.io/f/mdazpwzp",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      email: emailInput.value,
+      usage,
+      usageOther,
+      saasValue,
+      features,
+      diagramsOther,
+      materialsOther,
+      featuresOther
+    })
+  }
+);
     
       if (!res.ok) throw new Error("submission failed");
 
