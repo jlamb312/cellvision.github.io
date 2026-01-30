@@ -133,7 +133,13 @@ button {
 button:hover {
   background: var(--accent-dark);
 }
-
+  
+.checkbox-group input[type="checkbox"]:disabled + span,
+  .checkbox-group input[type="checkbox"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+  
 footer {
   margin-top: 50px;
   font-size: 13px;
@@ -158,24 +164,27 @@ footer {
 
 <h1>CellVision User Survey</h1>
 <p class="lead">
-  Help guide the future of CellVision. This short survey takes ~2 minutes.
+  We need your help to guide the future of CellVision! This short survey takes ~2 minutes.
 </p>
 
 <div class="card">
 
-<form action="https://formspree.io/f/XXXXXXXX" method="POST">
-
+<!-- FORM START -->
   <!-- 1) Email -->
-  <div class="field">
-    <label for="email">Your email address</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      required
-    >
-    <a href="https://cellvision.org/#privacy" style="font-size:12px;">Privacy Policy</a>
-  </div>
+    <form id="survey" style="margin-top:12px;">
+      <label for="email">
+        Your email address
+        <span id="email-required" style="color:red; display:none;">*</span>
+      </label><br>
+
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        style="padding:8px; width:100%; max-width:280px;"
+      >
+      <a href="https://cellvision.org/#privacy" style="font-size:12px;">Privacy Policy</a>
 
   <!-- 2) Usage -->
   <div class="field">
@@ -224,9 +233,9 @@ footer {
       <label><input type="checkbox" name="features[]" value="Degradation prediction"> Charge/discharge curve degradation prediction</label>
 
       <label>
-        <input type="checkbox" name="diagram" value="Additional Diagrams">
+        <input type="checkbox" name="features[]" value="Additional Diagrams">
         Additional diagrams or visualizations:
-        <input type="text" name="diagram_other" placeholder="Please specify">
+        <input type="text" name="diagrams_other" placeholder="Please specify">
       </label>  
       
       <label>
@@ -236,9 +245,9 @@ footer {
       </label>
 
       <label>
-        <input type="checkbox" name="features[]" value="Other visualizations">
-        Other visualizations:
-        <input type="text" name="visualizations_other" placeholder="Please specify">
+        <input type="checkbox" name="features[]" value="Other features">
+        Other features:
+        <input type="text" name="features_other" placeholder="Please specify">
       </label>
     </div>
   </div>
@@ -246,6 +255,13 @@ footer {
   <button type="submit">Submit survey</button>
 
 </form>
+
+       <!-- SUCCESS MESSAGE -->
+     <span
+        id="form-success"
+        style="display:none; color:green; margin-left:8px; font-weight:bold;"
+      >
+      </span>
 
 </div>
 
@@ -255,5 +271,121 @@ footer {
 
 </div>
 
+
+<!-- SCRIPTS -->
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const form = document.getElementById("survey");
+  const emailInput = document.getElementById("email");
+  const successMessage = document.getElementById("form-success");
+  const featureCheckboxes = document.querySelectorAll('input[name="features[]"]');
+  const MAX_FEATURES = 5;
+
+  function updateFeatureCheckboxState() {
+    const checkedCount = document.querySelectorAll('input[name="features[]"]:checked').length;
+
+  featureCheckboxes.forEach(cb => {
+    if (!cb.checked) {
+      cb.disabled = checkedCount >=MAX_FEATURES;}
+    });
+  }
+
+  featureCheckboxes.forEach(cb => {
+    cb.addEventListener("change", updateFeatureCheckboxState);
+  });
+
+    function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+  
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // --- Email validation ---
+    if (!isValidEmail(emailInput.value)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+// --- Usage ---
+    const usage =
+      document.querySelector('input[name="usage"]:checked')?.value || null;
+
+    const usageOther =
+      usage === "Other"
+        ? document.querySelector('input[name="usage_other"]')?.value || null
+        : null;
+
+    // --- SaaS value ---
+    const saasValue =
+      document.querySelector('input[name="saas_value"]:checked')?.value || null;
+
+    // --- Other feature text fields ---
+    const diagramsOther =
+      document.querySelector('input[name="diagrams_other"]')?.value || null;
+    
+    const materialsOther =
+      document.querySelector('input[name="materials_other"]')?.value || null;
+
+    const featuresOther =
+      document.querySelector('input[name="features_other"]')?.value || null;
+
+    // --- checkbox alert ---
+    const featureCheckboxes =
+      document.querySelectorAll('input[name="features[]"]:checked');
+
+    if (featureCheckboxes.length > 5) {
+      alert("Please select no more than 5 features.");
+      return;
+    }
+
+    const features = Array.from(featureCheckboxes).map(cb => cb.value);
+    
+   // --- Send to backend ---
+    try {
+      const res = await fetch(  
+      "https://formspree.io/f/mdazpwzp",
+        {
+           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+            },
+          body: JSON.stringify({
+            email: emailInput.value,
+            usage,
+            usageOther,
+            saasValue,
+            features,
+            diagramsOther,
+            materialsOther,
+            featuresOther
+          })
+        }
+      );
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || "Submission failed");
+  }
+
+  form.style.display = "none";
+  successMessage.style.display = "block";
+  successMessage.innerHTML = `
+    <h3>Thank you for participating in our survey!</h3>
+    <p>
+      Your feedback is valuable and we will use this information to direct the development of CellVision.
+    </p>
+  `;
+} catch (err) {
+  alert("There was an error submitting the survey. Please try again.");
+  console.error(err);
+}
+  });
+
+});
+</script> 
 </body>
 </html>
