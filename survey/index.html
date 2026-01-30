@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("survey");
   const emailInput = document.getElementById("email");
-  const successMessage = document.getElementById("form-success");
+  const successMessage = document.getElementById("form-successs");
   const featureCheckboxes = document.querySelectorAll('input[name="features[]"]');
   const MAX_FEATURES = 5;
 
@@ -342,10 +342,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const features = Array.from(featureCheckboxes).map(cb => cb.value);
     
     // --- Send to backend ---
+    try {
       const res = await fetch(
-        "https://formspree.io/f/mdazpwzp", {
+        "https://formspree.io/f/mdazpwzp",
+        {
            method: "POST",
-          headers: { "Accept": "application/json" }
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: emailInput.value,
             usage,
@@ -356,6 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
             materialsOther,
             featuresOther
           })
+        }
       );
 
       if (!res.ok) throw new Error("submission failed");
