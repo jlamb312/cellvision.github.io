@@ -279,14 +279,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const successMessage = document.getElementById("survey-success-message");
   const selectedFeatures =
   document.querySelectorAll('input[name="features[]"]:checked');
-
-  if (selectedFeatures.length > 5) {
-  alert("Please select no more than 5 features.");
-  return;
-  }
-
-const features = Array.from(selectedFeatures).map(cb => cb.value);
-
   const MAX_FEATURES = 5;
 
   function updateFeatureCheckboxState() {
@@ -339,15 +331,15 @@ const features = Array.from(selectedFeatures).map(cb => cb.value);
       document.querySelector('input[name="features_other"]')?.value || null;
 
     // --- checkbox alert ---
-    const featureCheckboxes =
-      document.querySelectorAll('input[name="features[]"]:checked');
+    const selectedFeatures =
+  document.querySelectorAll('input[name="features[]"]:checked');
 
-    if (featureCheckboxes.length > 5) {
-      alert("Please select no more than 5 features.");
-      return;
-    }
+if (selectedFeatures.length > MAX_FEATURES) {
+  alert("Please select no more than 5 features.");
+  return;
+}
 
-    const features = Array.from(featureCheckboxes).map(cb => cb.value);
+const features = Array.from(selectedFeatures).map(cb => cb.value);
 
  // --- Send to backend ---
    const res = await fetch(
