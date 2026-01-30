@@ -171,7 +171,6 @@ footer {
 
 <!-- FORM START -->
   <!-- 1) Email -->
-  <form action="https://formspree.io/f/xpqrolzv" method="POST">
     <form id="survey" style="margin-top:12px;">
       <label for="email">
         Your email address
@@ -341,6 +340,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const features = Array.from(featureCheckboxes).map(cb => cb.value);
 
+ // --- Send to backend ---
+    try {
+      const res = await fetch(
+        "https://formspree.io/f/xpqrolzv",
+        {
+           method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: emailInput.value,
+            usage,
+            usageOther,
+            saasValue,
+            features,
+            diagramsOther,
+            materialsOther,
+            featuresOther
+          })
+        }
+      );
+    
       if (!res.ok) throw new Error("submission failed");
 
       form.style.display = "none";
