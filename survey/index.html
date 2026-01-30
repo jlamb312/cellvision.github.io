@@ -271,6 +271,7 @@ footer {
 
 </div>
 
+
 <!-- SCRIPTS -->
  <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -346,8 +347,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch(
         "https://formspree.io/f/mdazpwzp",
         {
-          method: "POST",
-          headers: { "Accept": "application/json" },
+           method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: emailInput.value,
             usage,
@@ -360,8 +361,8 @@ document.addEventListener("DOMContentLoaded", () => {
           })
         }
       );
-;
- if (response.ok) {
+
+    if (response.ok) {
       form.style.display = "none";
       successMessage.style.display = "block";
       successMessage.innerHTML = `
@@ -371,8 +372,9 @@ document.addEventListener("DOMContentLoaded", () => {
         </p>
       `;
     } else {
-       alert("There was an error submitting the form. Please try again.");
-      }
+      alert("There was an error submitting the survey. Please try again.");
+      console.error(err);
+    }
   });
 
 });
