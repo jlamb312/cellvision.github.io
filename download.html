@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CellVision – Downloading...</title>
+    <style>
+        :root {
+            --bg: #f7f7f7;
+            --text: #222;
+            --muted: #666;
+            --accent: #7fae8f;
+            --border: #ddd;
+        }
+        body {
+            margin: 0;
+            font-family: Inter, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        img { height: 40px; margin-bottom: 32px; }
+        h1 { font-size: 24px; margin-bottom: 12px; }
+        p { color: var(--muted); font-size: 15px; max-width: 400px; }
+        .error { color: #c0392b; display: none; }
+    </style>
+</head>
+<body>
+    <img src="/cv-logo.png" alt="CellVision">
+    <h1>Preparing your download...</h1>
+    <p id="message">You will be redirected automatically. Please wait a moment.</p>
+    <p class="error" id="error">
+        This download link is invalid or has already been used. Please
+        <a href="https://cellvision.org/#open">return to cellvision.org</a>
+        and enter your email again to receive a new link.
+    </p>
+
+    <script>
+        const BACKEND = "https://cv-user-backend-production-c751.up.railway.app";
+
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get("token");
+
+        if (!token) {
+            document.getElementById("message").style.display = "none";
+            document.getElementById("error").style.display = "block";
+        } else {
+            window.location.href = BACKEND + "/download?token=" + encodeURIComponent(token);
+        }
+    </script>
+</body>
+</html>
