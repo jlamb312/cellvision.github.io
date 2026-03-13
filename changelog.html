@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Changelog – CellVision</title>
+
+<style>
+:root {
+    --bg: #f7f7f7;
+    --card: #ffffff;
+    --text: #222;
+    --muted: #666;
+    --accent: #7fae8f;
+    --accent-dark: #5f8f72;
+    --border: #ddd;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+header img {
+    height: 40px;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: var(--text);
+}
+
+h1 {
+    font-size: 36px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.intro {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 60px;
+}
+
+.version-block {
+    margin-bottom: 56px;
+}
+
+.version-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+}
+
+.version-header h2 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.version-date {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.version-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--accent);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-left: auto;
+}
+
+.change-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.change-list li {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
+}
+
+.change-list li:last-child {
+    border-bottom: none;
+}
+
+.change-tag {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 5px;
+    height: fit-content;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.tag-bugfix {
+    background: #fdecea;
+    color: #c0392b;
+}
+
+.tag-ui {
+    background: #eaf3fb;
+    color: #2471a3;
+}
+
+.tag-material {
+    background: #eafaf1;
+    color: #1e8449;
+}
+
+.tag-input {
+    background: #fef9e7;
+    color: #9a7d0a;
+}
+
+.tag-price {
+    background: #f4ecf7;
+    color: #7d3c98;
+}
+
+.tag-coming-soon {
+    background: #eee;
+    color: #666;
+}
+
+.placeholder-note {
+    background: var(--card);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 24px 30px;
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 30px 20px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <a href="/"><img src="cv-logo.png" alt="CellVision logo" /></a>
+    <nav>
+        <a href="/#open">Open</a>
+        <a href="/#pro">Pro</a>
+        <a href="/#license">License</a>
+        <a href="/changelog.html" style="color: var(--text); font-weight: 600;">Changelog</a>
+    </nav>
+</header>
+
+<h1>Changelog</h1>
+<p class="intro">Release notes for CellVision Desktop (Open Source).</p>
+
+<!-- V2.4 -->
+<div class="version-block">
+    <div class="version-header">
+        <h2>Version 2.4</h2>
+        <span class="version-date">Coming soon</span>
+        <span class="version-badge">Latest</span>
+    </div>
+    <p class="placeholder-note">Release notes for V2.4 will be published here at launch.</p>
+</div>
+
+<!-- V2.3 -->
+<div class="version-block">
+    <div class="version-header">
+        <h2>Version 2.3</h2>
+        <span class="version-date">October 2025</span>
+    </div>
+    <ul class="change-list">
+        <li>
+            <span class="change-tag tag-ui">UI</span>
+            <span>Emphasized the need to enable iterative calculations for the spreadsheet to work properly.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-material">Materials</span>
+            <span>Added sulfur cathode, sodium metal anode, and lithium metal anode.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-material">Materials</span>
+            <span>Updated hard carbon to Kuranode Type 2, effectively increasing nominal voltage for all sodium hard carbon cells and improving SIB energy density.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Fixed a circular calculation bug that caused blended anodes to give unstable results.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Hard carbon volume change calculation was referencing graphite capacity instead of hard carbon. Minimal impact to results.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Incorporated percent of lithiation into alloy anode volume change calculation, effectively decreasing the volume change of all alloy anodes.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Fixed the silicon anode error by adding a Si anode charge curve.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-input">Inputs</span>
+            <span>Changed alloy anode porosity in the charged state to a minimum of 20% (previously 10%) to allow for electrolyte diffusion. Alloy anode volume increased accordingly.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-input">Inputs</span>
+            <span>Decreased SiO anode capacity from 3,000 to 1,650 mAh/g.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-price">Prices</span>
+            <span>Updated cell component costs based on Shanghai Metals Market rates.</span>
+        </li>
+    </ul>
+</div>
+
+<!-- V2.2 -->
+<div class="version-block">
+    <div class="version-header">
+        <h2>Version 2.2</h2>
+        <span class="version-date">June 2025</span>
+    </div>
+    <ul class="change-list">
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Production scaling factors were incorrectly linked from BatPaC. The fix has slightly increased cell costs.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Electrode coating area parameter missed a layer count multiplier when calculating electrode manufacturing costs. The fix has increased cell manufacturing costs.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Anode foil cost did not automatically update to aluminum when a sodium anode was selected. The fix slightly decreased foil costs for sodium batteries.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-price">Prices</span>
+            <span>Copper foil costs were substantially underestimated and have been updated accordingly.</span>
+        </li>
+    </ul>
+</div>
+
+</div>
+
+<footer>
+    <img src="cv-logo.png" alt="CellVision logo" height="24">
+    <span>© CellVision LLC</span>
+</footer>
+
+</body>
+</html>

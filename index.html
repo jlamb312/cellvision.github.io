@@ -153,6 +153,51 @@ details {
     padding: 20px;
 }
 
+/* Help section */
+.help-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.help-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.help-card h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.help-card p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.help-card a.button {
+    display: inline-block;
+    font-size: 13px;
+    padding: 10px 18px;
+}
+
+.lamb-logo {
+    height: 64px;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.course-deadline {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+}
+
 footer {
     border-top: 1px solid var(--border);
     padding: 30px 20px;
@@ -176,6 +221,7 @@ footer {
         <a href="#open">Open</a>
         <a href="#pro">Pro</a>
         <a href="#license">License</a>
+        <a href="/changelog.html">Changelog</a>
     </nav>
 </header>
 
@@ -208,6 +254,46 @@ footer {
     </div>
 </section>
 
+<section id="help" class="section">
+    <h2>Help &amp; Resources</h2>
+    <p style="color: var(--muted); margin-top: -10px; margin-bottom: 30px; font-size: 15px;">
+        Need support with battery techno-economic analysis? These resources are built by the same team behind CellVision.
+    </p>
+    <div class="help-cards">
+
+        <div class="help-card" style="position: relative;">
+            <h3>Battery TEA Course</h3>
+            <p>
+                An industry-focused course covering cost and market dynamics across the full battery value chain —
+                from raw material extraction to end-of-life recycling — for both lithium and sodium-ion systems.
+                Students learn to build techno-economic models and translate emerging technologies into
+                quantified product-level benefits. Offered through the University of Washington.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: 16px;">
+                <div>
+                    <a class="button secondary" href="https://www.nondegree.uw.edu/register" target="_blank" rel="noopener">
+                        Register Now
+                    </a>
+                    <p class="course-deadline" style="margin-top: 8px; margin-bottom: 0;">Registration deadline: March 29, 2026</p>
+                </div>
+                <img src="University_of_Washington_seal.svg.png" alt="University of Washington" style="height: 48px; flex-shrink: 0;">
+            </div>
+        </div>
+
+        <div class="help-card">
+            <img src="Lamb_Logo_with_Text.png" alt="Lamb Battery Consulting" style="height: 90px; margin-bottom: 14px; display: block; margin-left: auto; margin-right: auto;">
+            <p>
+                Expert consulting in battery electrochemistry, cell design, and cost modeling.
+                Available for projects requiring hands-on technical analysis or model development.
+            </p>
+            <a class="button secondary" href="mailto:julia.lamb@cellvision.org">
+                Get in Touch
+            </a>
+        </div>
+
+    </div>
+</section>
+
 <section id="open" class="section">
   <h2>CellVision Open</h2>
 
@@ -224,6 +310,9 @@ footer {
       Version: 2.3 <br>
       Version Release Date: October 2025 <br>
       License: Open Source
+    </p>
+    <p style="margin-top: -10px;">
+      <a href="/changelog.html" style="font-size: 14px; color: var(--accent-dark);">View changelog →</a>
     </p>
 
     <!-- EMAIL GATE START -->
@@ -295,11 +384,13 @@ footer {
                 <li>Saved projects</li>
                 <li>Saved design templates</li>
                 <li>New cell designs</li>
-                <li>New comparisson tool</li>
+                <li>New comparison tool</li>
             </ul>
         </div>
     </div>
 </section>
+
+
 
 <section id="license" class="section">
     <details>
@@ -330,7 +421,7 @@ footer {
     <p><strong>Last updated:</strong> 2026</p>
 
 <p>
-CellVision LLC (“CellVision”, “we”, “our”) respects your privacy. This Privacy Policy explains how we collect, use, and protect your information when you interact with the CellVision website or download CellVision software.
+CellVision LLC ("CellVision", "we", "our") respects your privacy. This Privacy Policy explains how we collect, use, and protect your information when you interact with the CellVision website or download CellVision software.
 </p>
 
 <h4>Information We Collect</h4>
@@ -377,7 +468,7 @@ You may request access to, correction of, or deletion of your personal informati
 
 <h4>Changes to This Policy</h4>
 <p>
-We may update this Privacy Policy from time to time. Updates will be posted on this page with a revised “Last updated” date.
+We may update this Privacy Policy from time to time. Updates will be posted on this page with a revised "Last updated" date.
 </p>
 
   </details>
@@ -450,7 +541,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <h3>Check your email 📬</h3>
         <p>
           We've sent you a download link.
-          If you don’t see it within a few minutes, please check your spam folder.
+          If you don't see it within a few minutes, please check your spam folder.
         </p>
         <p>
           <strong>Note:</strong> Your browser may warn that the download is unsafe.
