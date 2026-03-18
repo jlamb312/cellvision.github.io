@@ -157,6 +157,11 @@ h1 {
     color: #7d3c98;
 }
 
+.tag-feature {
+    background: #eaf0fb;
+    color: #1a5276;
+}
+
 .tag-coming-soon {
     background: #eee;
     color: #666;
@@ -207,10 +212,95 @@ footer {
 <div class="version-block">
     <div class="version-header">
         <h2>Version 2.4</h2>
-        <span class="version-date">Coming soon</span>
+        <span class="version-date">March 2026</span>
         <span class="version-badge">Latest</span>
     </div>
-    <p class="placeholder-note">Release notes for V2.4 will be published here at launch.</p>
+    <ul class="change-list">
+        <li>
+            <span class="change-tag tag-material">Materials</span>
+            <span>Li-PbO has been removed as an anode choice due to insufficient confidence in available literature.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-material">Materials</span>
+            <span>NMC811 half-cell capacity at 4.4V vs Li decreased from 214 to 210 mAh/g.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-material">Materials</span>
+            <span>Additional anode binders added: PAA, CMC, and SBR.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-material">Materials</span>
+            <span>Manganese-based Potassium Prussian White cathode added.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-material">Materials</span>
+            <span>Hard carbon capacity and voltage curves have been updated to reflect material improvements in the market.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-material">Materials</span>
+            <span>Sodium Prussian White cathode capacity and discharge curve updated.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Fixed the volume change calculation instability.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Fixed a bug that occasionally broke cell costs by removing a circular calculation.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Fixed a slight calculation error with anode porosity.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Blended anode porosity in the discharge state is now 20% instead of 10% to match the other anodes.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>The anode current collector for potassium-ion batteries is now correctly set to aluminum instead of copper.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Volume change calculation for lithium-sulfur cells has been corrected.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Metal anodes no longer incorrectly include binder or carbon content.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-bugfix">Bug Fix</span>
+            <span>Current collector foil mass was incorrectly halved and has been corrected. This increases the mass of all cells.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-price">Prices</span>
+            <span>Active and inactive material prices have been updated.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-feature">Feature</span>
+            <span>Carbon anode porosity is now dependent on the "energy" or "power" cell selection.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-feature">Feature</span>
+            <span>Anode binder density is now dependent on anode type.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-feature">Feature</span>
+            <span>Anode first cycle efficiency (FCE) has been added, which reduces cell capacity and adjusts the lower voltage cutoff of the cell.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-feature">Feature</span>
+            <span>Target cell loading is now based on both an upper manufacturing thickness limit and a target areal current density instead of the previous loading override option.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-feature">Feature</span>
+            <span>You can now set a target Ah for the cell instead of a pre-defined cell dimension. This is more appropriate for comparing different chemistries.</span>
+        </li>
+        <li>
+            <span class="change-tag tag-feature">Feature</span>
+            <span>Anode-free cell modeling has been improved: cells are now built without lithium metal and volume change during cycling is accounted for separately.</span>
+        </li>
+    </ul>
 </div>
 
 <!-- V2.3 -->
@@ -294,6 +384,7 @@ footer {
 <footer>
     <img src="cv-logo.png" alt="CellVision logo" height="24">
     <span>© CellVision LLC</span>
+    <span style="margin-left: 20px;">Questions? <a href="mailto:info@cellvision.org" style="color: var(--muted);">info@cellvision.org</a></span>
 </footer>
 
 </body>
